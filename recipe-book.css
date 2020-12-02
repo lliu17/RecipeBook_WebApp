@@ -1,0 +1,52 @@
+body {
+	font-family: 'Poppins';
+	font-size: 22px;
+}
+
+.home-image {
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),
+				url("images/christmas-dinner.jpeg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+.home-text {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 30px;
+	color: white;
+}
+
+ul {
+	list-style-type: none;
+	text-align: center;
+}
+
+.nav-li {
+	display: inline;
+}
+
+.nav-content {
+	color: black;
+	font-size: 14pt;
+}
+
+a:link {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	color: #990000;
+}
