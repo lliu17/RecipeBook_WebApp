@@ -6,10 +6,15 @@ http.createServer(function(req,res) {
     res.write('<h1>Database: Search for Recipes</h1>');
     //res.end();
 
-        var qobj = formurl.parse(req.url, true).query;
-    	var recipeName = qobj.recipeName;
-    	var duration = qobj.duration;
-    	var rating = qobj.rating;
+		var qobj = formurl.parse(req.url, true).query,
+			recipeName = qobj.recipeName,
+			hours = qobj.hours,
+			minutes = qobj.minutes,
+			utensilsQuantities = qobj.numUtensils,
+			utensils = qobj.utenstils,
+			ingredientsQuantities = qobj.quanIngredients,
+			units = qobj.units,
+			ingredients = qobj.ingredients;
 
     	res.write("The new recipe name is: " + recipeName);
 
@@ -22,6 +27,7 @@ http.createServer(function(req,res) {
     	var dbo = db.db("recipebook");
     	var coll = dbo.collection('user1');
 
+		// TODO - make conform w database, add "instructions" loop and "utensils" loops
     	coll.find().toArray(function(err, items) {
     		if (err) {
     			console.log("error: " + err);
