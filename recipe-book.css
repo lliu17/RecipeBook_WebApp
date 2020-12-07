@@ -63,6 +63,8 @@ a:hover {
 }
 
 .recipeInput {
-	background-color: rgba(255, 122, 34, 0.74);
+	background-color: rgba(216, 208, 202, 0.74);
 	text-align: center;
+	width: 50%;
+	margin-left: 30%;
 }

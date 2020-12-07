@@ -20,7 +20,7 @@
 
 	<body>
 		<div class="recipeInput-image">
-			<h1>Create a Recipe</h1>
+			<h1 style="text-align: center;">Create a Recipe</h1>
 				<ul class="nav-content" style="background-color: rgba(255, 255, 150, .5);">
 					<li class="nav-li"><a href="index.html">HOME</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
 					<li class="nav-li"><a href="recipe-book.html">CREATE</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
@@ -42,6 +42,11 @@
 					Ingredients: <input type="number" name='quanIngredient' value="00"> <select name="units"><option value="cups">cups</option><option value="oz">oz.</option></select> <input type="input" placeholder="flour" name='ingredients'>
 				</div>
 				<input type="button" value="Add another ingredient" onclick="addInputField('quanIngredient', 'units', 'ingredients', 'inputIngredients')">
+				<div id="inputInstructions">
+					Instructions: 
+					<input type='text' name='instructions' value='Step 1'> 
+				</div>
+				<input type="button" value="Add another step" onclick="addInputField('', '', 'instructions', 'inputInstructions')">
 				<input type='submit' value="Submit">
 			</form>
 		</div>
