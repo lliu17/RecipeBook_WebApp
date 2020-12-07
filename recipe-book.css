@@ -50,3 +50,19 @@ a:visited {
 a:hover {
 	color: #990000;
 }
+
+.recipeInput-image {
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),
+				url("images/old-recipe-cards-main.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+.recipeInput {
+	background-color: rgba(255, 122, 34, 0.74);
+	text-align: center;
+}

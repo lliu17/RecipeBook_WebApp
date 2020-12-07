@@ -5,22 +5,45 @@
 		<title>Digital Recipe Book Database</title>
 		<link rel="stylesheet" href="recipe-book.css">
 		<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+		<script language="javascript">
+			function addInputField(quantityName, unitsName, itemName, divId) {
+				div = document.getElementById(divId);
+
+				quantity = document.createElement("input");
+				quantity.name = quantityName;
+				quantity.type = "number";
+				quantity.value = "0";
+
+			}
+		</script>
 	</head>
 
 	<body>
-		<h1>Database: Search for a Recipe</h1>
-			<ul class="nav-content">
-				<li class="nav-li"><a href="index.html">HOME</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
-				<li class="nav-li"><a href="recipe-book.html">RECIPE BOOK</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
-				<li class="nav-li"><a href="about.html">ABOUT US</a></li>&nbsp;&nbsp;•&nbsp;
-				<li class="nav-li"><a href="contact.html">CONTACT</a></li>
-			</ul>
+		<div class="recipeInput-image">
+			<h1>Create a Recipe</h1>
+				<ul class="nav-content" style="background-color: rgba(255, 255, 150, .5);">
+					<li class="nav-li"><a href="index.html">HOME</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+					<li class="nav-li"><a href="recipe-book.html">CREATE</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+					<li class="nav-li"><a href="about.html">ABOUT US</a></li>&nbsp;&nbsp;•&nbsp;
+					<li class="nav-li"><a href="contact.html">CONTACT</a></li>
+				</ul>
 
-		<form action="http://localhost:8080" method='get'>
-			Recipe Name: <input type='text' name='recipeName'><br />
-			Time Needed: <input type='number' name='duration'><br />
-			Rating: <input type='number' name='rating' min='0' max='5'><br />
-			<input type='submit' value="Submit">
-		</form>
+			<form action="http://localhost:8080" method='get' class="recipeInput">
+				<div id='recipeInputHeader'>
+					<label>Recipe Name: </label>
+					<input type='text' placeholder="Mashed Potatoes" name='recipeName'><br />
+					<label> Time Needed: </label><input type='number' name='hours' value="00">hrs <input type="number" name='minutes' value='00'>min<br />
+				</div>
+				<div id="inputUtensils">
+					Utensils Needed: <input type="number" name='numUtensils' value="00"> <input type="input" placeholder="whisk" name='utensils'>
+				</div>
+				<input type="button" value="Add another utensil" onclick="addInputField('numUtensils', '', 'utensils', 'inputUtensils')">
+				<div id="inputIngredients">
+					Ingredients: <input type="number" name='quanIngredient' value="00"> <select name="units"><option value="cups">cups</option><option value="oz">oz.</option></select> <input type="input" placeholder="flour" name='ingredients'>
+				</div>
+				<input type="button" value="Add another ingredient" onclick="addInputField('quanIngredient', 'units', 'ingredients', 'inputIngredients')">
+				<input type='submit' value="Submit">
+			</form>
+		</div>
 	</body>
 </html>
