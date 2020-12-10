@@ -62,9 +62,42 @@ a:hover {
     position: absolute;
 }
 
+
 .recipeInput {
 	background-color: rgba(216, 208, 202, 0.74);
 	text-align: center;
 	width: 50%;
 	margin-left: 30%;
+}
+
+.contactForm {
+	background-color: rgba(216, 208, 202, 0.74);
+	width: 20%;
+	margin-left: 40%;
+	padding: 20px;
+
+}
+
+.contactForm input {
+  width: 100%;
+  clear: both;
+}
+
+textarea {
+	width: 100%;
+}
+
+.button {
+	margin-left: 5px;
+	font-family: 'Poppins';
+	font-size: 20px;
+	background-color: rgba(255, 255, 150, .5);
+	border: none;
+	width: 100%;
+}
+
+.button:hover {
+	background-color: #A52A2A;
+	transition-duration: 0.4s;
+	color: white;
 }

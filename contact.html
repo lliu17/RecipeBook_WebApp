@@ -5,15 +5,67 @@
 		<title>Contact: Digital Recipe Book</title>
 		<link rel="stylesheet" href="recipe-book.css">
 		<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+		<script>
+			function pressButton() {
+
+				var email = document.getElementById("email").value;
+
+				var url = "http://apilayer.net/api/check?access_key=f34d9c14b99875cbc9f74459e4386dd6&email=";
+
+				url += email;
+
+				request = new XMLHttpRequest();
+
+				request.open("GET", url, true);
+
+				request.onreadystatechange = function() {
+					if (request.readyState == 4 && request.status == 200) {
+						result = request.responseText;
+
+						var emailObj = JSON.parse(result);
+
+						if (emailObj.format_valid == false) {
+							alert("Please enter a valid email address.");
+						} else {
+							alert("Thank you for your message! We will be in contact shortly.");
+						}
+					}
+				}
+				request.send();
+			}
+
+		</script>
+
 	</head>
 
 	<body>
-		<h1>Contact</h1>
-			<ul class="nav-content">
+		<div class="recipeInput-image">
+		<h1 style="text-align: center;">Contact</h1>
+			<ul class="nav-content" style="background-color: rgba(255, 255, 150, .5);">
 				<li class="nav-li"><a href="index.html">HOME</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
 				<li class="nav-li"><a href="recipe-book.html">CREATE</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
 				<li class="nav-li"><a href="about.html">ABOUT US</a></li>&nbsp;&nbsp;•&nbsp;
 				<li class="nav-li"><a href="contact.html">CONTACT</a></li>
 			</ul>
+
+			<div class="contactForm">
+				<form>
+					<label>Name:</label>
+					<input type="text" name="name" required /><br />
+
+					<label>Email:</label>
+					<input type="email" name="email" id="email" required /><br />
+
+					<label>Phone:</label>
+					<input type="phone" name="phone" /><br />
+
+					<label>Message: </label>
+					<textarea name="message" required></textarea><br />
+				</form>
+				<button class="button" id="btn" type="button" onclick="pressButton()">Send</button>
+			</div>
+
+		</div>
 	</body>
 </html>
