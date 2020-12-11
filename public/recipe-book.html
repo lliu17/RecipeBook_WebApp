@@ -1,0 +1,68 @@
+<!-- <h1 class="text-center mb-3">{{title}}</h1>
+
+<form action="/recipes" method="POST" class="mb-4">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="email">email</label>
+        <input type="email" name="email" class="form-control">
+    </div>
+    <input type="submit" value="Add Member" class="btn btn-primary btn-block">
+</form> -->
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Digital Recipe Book Database</title>
+		<link rel="stylesheet" href="recipe-book.css">
+		<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+		<script language="javascript">
+			function addInputField(quantityName, unitsName, itemName, divId) {
+				div = document.getElementById(divId);
+
+				quantity = document.createElement("input");
+				quantity.name = quantityName;
+				quantity.type = "number";
+				quantity.value = "0";
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="recipeInput-image">
+			<h1 style="text-align: center;">Create a Recipe</h1>
+				<ul class="nav-content" style="background-color: rgba(255, 255, 150, .5);">
+					<li class="nav-li"><a href="index.html">HOME</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+					<li class="nav-li"><a href="recipe-book.html">CREATE</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+					<li class="nav-li"><a href="about.html">ABOUT US</a></li>&nbsp;&nbsp;•&nbsp;
+					<li class="nav-li"><a href="contact.html">CONTACT</a></li>
+				</ul>
+
+			<form action="/recipes" method="POST" class="recipeInput">
+				<div id='recipeInputHeader'>
+					<label>Recipe Name: </label>
+					<input type='text' placeholder="Mashed Potatoes" name='recipeName'><br />
+					<label> Time Needed: </label><input type='number' name='hours' value="00">hrs <input type="number" name='minutes' value='00'>min<br />
+				</div>
+				<div id="inputUtensils">
+					Utensils Needed: <input type="number" name='numUtensils' value="00"> <input type="input" placeholder="whisk" name='utensils'>
+				</div>
+				<input type="button" value="Add another utensil" onclick="addInputField('numUtensils', '', 'utensils', 'inputUtensils')">
+				<div id="inputIngredients">
+					Ingredients: <input type="number" name='quanIngredient' value="00"> <select name="units"><option value="cups">cups</option><option value="oz">oz.</option></select> <input type="input" placeholder="flour" name='ingredients'>
+				</div>
+				<input type="button" value="Add another ingredient" onclick="addInputField('quanIngredient', 'units', 'ingredients', 'inputIngredients')">
+				<div id="inputInstructions">
+					Instructions: 
+					<input type='text' name='instructions' value='Step 1'> 
+				</div>
+				<input type="button" value="Add another step" onclick="addInputField('', '', 'instructions', 'inputInstructions')">
+				<input type='submit' value="Submit">
+			</form>
+		</div>
+	</body>
+</html>
