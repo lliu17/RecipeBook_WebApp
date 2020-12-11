@@ -17,15 +17,3 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // route: create recipe
 app.use("/recipes", require("./recipe-book"));
-
-// handlebars middleware
-// app.engine("handlebars", handlebar({defaultLayout: "main"}));
-// app.set("view engine", "handlebars");
-
-// // render index on home /
-// app.get("/", (req, res) => res.render("index")); 
-// // or render can take 2nd param
-// app.get("/", (req, res) => res.render("index", {    
-//     title: "Member App",
-//     members
-// }));
