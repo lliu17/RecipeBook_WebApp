@@ -67,7 +67,8 @@ a:hover {
 	background-color: rgba(216, 208, 202, 0.74);
 	text-align: center;
 	width: 50%;
-	margin-left: 30%;
+	margin-left: 25%;
+	margin-right: 25%;
 }
 
 .contactForm {
@@ -76,6 +77,14 @@ a:hover {
 	margin-left: 40%;
 	padding: 20px;
 
+}
+
+.aboutInfo {
+	background-color: rgba(216, 208, 202, 0.74);
+	text-align: center;
+	width: 75%;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 .contactForm input {
