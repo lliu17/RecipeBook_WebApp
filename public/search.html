@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+	<head>	
+		<link rel="stylesheet" href="recipe-book.css">
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <style>
+            .recipeInput {
+                padding-top: 0;
+                padding-bottom: 20px
+            }
+
+            .recipeInputHeader {
+               display: inline-block;
+               padding-bottom: 20px
+            }
+
+            .search {
+                margin: 0 auto;
+                display: block;
+                width: 80%;
+                height: 25px
+            }
+            .button {
+                width: 80%;
+            }
+        </style>
+        <title>Looking for Recipes</title>
+	</head>
+
+	<body>        
+        <div class="recipeInput-image">
+            <h1 style="text-align: center;">Search for Recipe</h1>
+            <ul class="nav-content" style="background-color: rgba(255, 255, 150, .5);">
+                <li class="nav-li"><a href="index.html">HOME</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+                <li class="nav-li"><a href="recipe-book.html">CREATE</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+                <li class="nav-li"><a href="search.html">SEARCH</a></li>&nbsp;&nbsp;•&nbsp;&nbsp;
+                <li class="nav-li"><a href="about.html">ABOUT US</a></li>&nbsp;&nbsp;•&nbsp;
+                <li class="nav-li"><a href="contact.html">CONTACT</a></li>
+            </ul>
+
+            <form action="/search" method="POST" class="recipeInput">
+                <p>Search recipe by:</p>
+                <div class='recipeInputHeader'>
+                    <input type="radio" id="name" name="search" value="name" checked>
+                    <label for="name">Name</label><br>
+                </div>
+                <div class='recipeInputHeader'>
+                    <input type="radio" id="ingredients" name="search" value="ingredients">
+                    <label for="ingredients">Ingredients</label><br>
+                </div>
+
+                <input type='text' placeholder="recipe name" name='query' class="search"><br />
+                <input type='submit' value="Submit" class="button">
+
+            </form>
+
+            <script>
+                var radio = $("[name='search']");
+                radio.on("click", function() { search_by(); });
+                function search_by() {
+                    if(radio[0].checked) {
+                        $("[name='query']").attr("placeholder", "recipe name");
+                    }
+                    else {
+                        $("[name='query']").attr("placeholder", "ingredients, seperated by comma");
+                    }
+                }
+            </script>
+               
+		</div>
+	</body>
+</html>

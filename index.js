@@ -17,3 +17,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // route: create recipe
 app.use("/recipes", require("./recipe-book"));
+
+// route: search recipe
+app.use("/search", require("./search"));

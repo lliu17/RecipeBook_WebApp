@@ -68,7 +68,9 @@ a:hover {
 	text-align: center;
 	width: 50%;
 	margin-left: 25%;
-	margin-right: 25%;
+    margin-right: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .contactForm {
@@ -84,7 +86,9 @@ a:hover {
 	text-align: center;
 	width: 75%;
 	margin-left: 10%;
-	margin-right: 10%;
+    margin-right: 10%;
+    padding-bottom: 5px;
+    padding-bottom: 15px;
 }
 
 .contactForm input {
