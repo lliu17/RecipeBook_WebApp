@@ -78,6 +78,14 @@ a:hover {
 
 }
 
+.aboutInfo {
+	background-color: rgba(216, 208, 202, 0.74);
+	text-align: center;
+	width: 75%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
 .contactForm input {
   width: 100%;
   clear: both;
