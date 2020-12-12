@@ -16,29 +16,44 @@ router.post("/", (req, res) => {
     const query = req.body.query;
     console.log("query = " + query);
 
+    var searchIn;   // check radio button to see if search for name or ingredients
+    if (req.body.search == "name") {
+        searchIn = "recipeName";
+    }
+    else {
+        searchIn = "ingredients";
+    }
+    console.log("search in: " + searchIn);
+
     MongoClient.connect(url,  { useUnifiedTopology: true }, (errConnect, client) => {
         if (errConnect) return console.error(errConnect);
         else console.log("connected to db");
 
         const db = client.db("FamilyRecipe");
         const collection = db.collection("recipes");
+        
         // search using regular expression - not exact match
-        collection.find({"recipeName": new RegExp(query)}).toArray((errSearch, result) => 
+        collection.find({[searchIn]: new RegExp(query)}).toArray((errSearch, result) => 
         {
             if (errSearch) return console.error(errSearch);
             else {
+                // console.log(result);
                 console.log("found " + result.length + " recipes.");
-                res.json(result);
-                // loop - return all search results
-                // for (i = 0; i < result.length; i++) {
-                //     console.log(result[i]);
-                //     res.json()
-                // }
+                
+                // print all search results
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                printItems(result, res);
             }
             client.close();
+            res.end();
         });
     });
-    //res.redirect("/search");
 });
+
+function printItems(result, res) {
+    for (i=0; i<result.length; i++) {
+        res.write("Recipe: " + result[i].recipeName + "<br>");
+    }
+}
 
 module.exports = router;
