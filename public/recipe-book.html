@@ -5,17 +5,6 @@
 		<title>Digital Recipe Book Database</title>
 		<link rel="stylesheet" href="recipe-book.css">
 		<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-		<script language="javascript">
-			function addInputField(quantityName, unitsName, itemName, divId) {
-				div = document.getElementById(divId);
-
-				quantity = document.createElement("input");
-				quantity.name = quantityName;
-				quantity.type = "number";
-				quantity.value = "0";
-
-			}
-		</script>
 	</head>
 
 	<body>
@@ -35,8 +24,9 @@
 					<input type='text' placeholder="Mashed Potatoes" name='recipeName'><br />
 					<label> Time Needed: </label><input type='number' name='hours' value="00">hrs <input type="number" name='minutes' value='00'>min<br />
 				</div>
+				<!--Utensils needed: (utensil)-->
 				<div id="inputUtensils">
-					Utensils Needed: <input type="number" name='numUtensils' value="00"> <input type="input" placeholder="whisk" name='utensils'>
+					Utensils Needed: <input type="input" placeholder="whisk" name='utensils'>
 				</div>
 				<input type="button" value="Add another utensil" onclick="addInputField('numUtensils', '', 'utensils', 'inputUtensils')">
 				<div id="inputIngredients">
@@ -50,6 +40,18 @@
 				<input type="button" value="Add another step" onclick="addInputField('', '', 'instructions', 'inputInstructions')">
 				<input type='submit' value="Submit">
 			</form>
+			<script language="javascript">
+				function addInputField(quantityName, unitsName, itemName, divId) {
+					div = document.getElementById(divId);
+	
+					quantity = document.createElement("input");
+					quantity.name = quantityName;
+					quantity.type = "number";
+					quantity.value = "0";
+					
+					div.appendChild(quantity);
+				}
+			</script>
 		</div>
 	</body>
 </html>
