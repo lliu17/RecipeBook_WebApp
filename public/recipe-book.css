@@ -123,7 +123,7 @@ textarea {
     background-position: center;
     background-repeat: no-repeat;
 	background-size: cover;
-	background-attachment: sticky;
+	background-attachment: scroll;
     position: absolute;
 }
 
