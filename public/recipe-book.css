@@ -130,9 +130,8 @@ textarea {
 .resultsDiv {
 	background-color: rgba(216, 208, 202, 0.74);
 	text-align: center;
-	width: 75%;
+	width: 50%;
 	margin-left: 40%;
     margin-right: 10%;
     padding-bottom: 5px;
-    padding-bottom: 15px;
 }
