@@ -51,7 +51,7 @@ router.post("/", (req, res) => {
 });
 
 function printItems(result, res) {
-    var recipesToPrint = "<body><div class='search-results'><h1>Search Results</h1><div id='resultsDiv'>";
+    var recipesToPrint = "<head><link rel='stylesheet' href='recipe-book.css'></head><body><div class='search-results'><h1>Search Results</h1><div id='resultsDiv'>";
 
     if (result.length > 0) {
         for (i=0; i<result.length; i++) {
