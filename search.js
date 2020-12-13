@@ -51,9 +51,17 @@ router.post("/", (req, res) => {
 });
 
 function printItems(result, res) {
-    for (i=0; i<result.length; i++) {
-        res.write("Recipe: " + result[i].recipeName + "<br>");
+    var recipesToPrint = "<body class='search-results'><h1>Search Results</h1><div id='resultsDiv'>";
+
+    if (result.length > 0) {
+        for (i=0; i<result.length; i++) {
+            recipesToPrint += "<p id=" + result[i].recipeName + ">Recipe: " + result[i].recipeName + "</p><br>";
+        }
+    } else {
+        recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
     }
+    recipesToPrint += "</div>";
+    res.write(recipesToPrint);
 }
 
 module.exports = router;
