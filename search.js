@@ -51,7 +51,7 @@ router.post("/", (req, res) => {
 });
 
 function printItems(result, res) {
-    var recipesToPrint = "<body class='search-results'><h1>Search Results</h1><div id='resultsDiv'>";
+    var recipesToPrint = "<body><div class='search-results'><h1>Search Results</h1><div id='resultsDiv'>";
 
     if (result.length > 0) {
         for (i=0; i<result.length; i++) {
@@ -60,7 +60,7 @@ function printItems(result, res) {
     } else {
         recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
     }
-    recipesToPrint += "</div></body>";
+    recipesToPrint += "</div></div></body>";
     res.write(recipesToPrint);
 }
 
