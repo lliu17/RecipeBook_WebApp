@@ -116,7 +116,7 @@ textarea {
 }
 
 .search-results {
-	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),
+	background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.267) ),
 				url("images/cooking-college.jpg");
     height: 100%;
     width: 100%;
@@ -124,4 +124,14 @@ textarea {
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
+}
+
+.resultsDiv {
+	background-color: rgba(216, 208, 202, 0.74);
+	text-align: center;
+	width: 75%;
+	margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 5px;
+    padding-bottom: 15px;
 }
