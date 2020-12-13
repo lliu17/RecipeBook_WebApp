@@ -60,7 +60,7 @@ function printItems(result, res) {
     } else {
         recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
     }
-    recipesToPrint += "</div>";
+    recipesToPrint += "</div></body>";
     res.write(recipesToPrint);
 }
 
