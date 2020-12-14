@@ -56,7 +56,7 @@ function printItems(result, res) {
     if (result.length > 0) {
         for (i=0; i<result.length; i++) {
             recipesToPrint += "<p id=" + result[i].recipeName + ">Recipe: " + result[i].recipeName + "</p><br>";
-            recipesToPrint += "<p>Hours: " + results[i].hours + " Minutes:" + results[i].minutes + "</p><br>";
+            recipesToPrint += "<p>Hours: " + result[i].hours + " Minutes:" + result[i].minutes + "</p><br>";
         }
     } else {
         recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
