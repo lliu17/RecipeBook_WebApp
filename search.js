@@ -60,8 +60,8 @@ function printItems(result, res) {
             recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe " + numRecipes + ": " + result[i].recipeName + "</p><br>";
             recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + " minutes</p><br>";
             recipesToPrint += "<p class='recipeContent'>Utensils:</p><br>";
-            for (var j = 0; j < result.utensils.length; j++) {
-                recipesToPrint += "<p class='recipeContent'>" + numUtensils + ". " +  result.utensils[j] + "</p><br>";
+            for (var j = 0; j < result[i].utensils.length; j++) {
+                recipesToPrint += "<p class='recipeContent'>" + numUtensils + ". " +  result[i].utensils[j] + "</p><br>";
                 numUtensils++;
             }
 
