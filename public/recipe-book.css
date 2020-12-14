@@ -135,3 +135,12 @@ textarea {
     margin-right: 10%;
     padding-bottom: 5px;
 }
+
+.recipeTitle {
+	color: white;
+	font-size: 20px;
+}
+
+.recipeContent {
+	color: white;
+}
