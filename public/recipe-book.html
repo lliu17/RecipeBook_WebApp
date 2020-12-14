@@ -65,6 +65,7 @@
 				}
 
 				function addInputField(divId, fieldType, inputType, fieldName, fieldPlaceholder) {
+					alert("add input field called");
 					div = document.getElementById(divId);
 	
 					field = document.createElement(fieldType);
@@ -76,6 +77,7 @@
 				}
 
 				function addMultipleFields(divId, fieldName1, fieldName2, fieldName3) {
+					alert("multiple fields called");
 					addInputField(divId, 'number', fieldName1, '0');
 					makeSelect(fieldName2, divId);
 					addInputField(divId, 'text', fieldName3, 'sugar');
