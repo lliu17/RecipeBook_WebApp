@@ -20,8 +20,7 @@
 
 			<form action="/recipes" method="POST" class="recipeInput">
 				<div id='recipeInputHeader'>
-					<label><h2>Recipe Name: </h2> </label>
-					<input type='text' required="true" placeholder="Mashed Potatoes" name='recipeName'><br />
+					<label><h3>Recipe Name: </h3> </label><input type='text' required="true" placeholder="Mashed Potatoes" name='recipeName'><br />
 					<label> Time Needed: </label><input type='number' name='hours' value="0">hrs <input type="number" name='minutes' value='0'>min<br />
 				</div>
 				<!--Utensils needed: (utensil)-->
@@ -47,13 +46,20 @@
 
 				//borrowed from the "Jade Delight" provided code
 				function makeSelect(name, divId) {
-					var t= "";
-					t = "<select name='" + name + "' size='1'>";
+					div = document.getElementById(divId);
+
+					select = document.createElement("select");
+
+					select.name = name;
+					select.size = 1;
+
 					for (j=0; j<units.length; j++) {
-						t += "<option value='" + units[j] + "'>" + units[j] + "</option>";
+						option = document.createElement("option");
+						option.value= units[j]
+						option.innerText = units[j];
+						select.appendChild(option);
 					}
-					t+= "</select>"; 
-					document.write(t);
+					div.appendChild(select);
 				}
 
 				function addInputField(divId, fieldType, inputType, fieldName, fieldPlaceholder) {
