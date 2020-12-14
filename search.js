@@ -55,6 +55,7 @@ function printItems(result, res) {
     var numRecipes = 1;
     var numUtensils = 1;
     var numIngred = 1;
+    var numInstruc = 1;
 
     if (result.length > 0) {
         for (var i = 0; i < result.length; i++) {
@@ -74,9 +75,15 @@ function printItems(result, res) {
             // }
 
             recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
-            recipesToPrint += "<p class='recipeContent'>" + result[i].instructions + "</p>";
+            for (j = 0;  j < result[i].instructions.length; j++) {
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numInstruc + ". " + result[i].instructions[j] + "</p>";
+                numInstruc++;
+            }
+            
+            //recipesToPrint += "<p class='recipeContent'>" + result[i].instructions + "</p>";
 
-            numingred = 1;
+            numInstruc = 1;
+            numIngred = 1;
             numUtensils = 1;
             numRecipes++;
         }
