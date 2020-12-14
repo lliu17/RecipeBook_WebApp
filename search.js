@@ -73,6 +73,9 @@ function printItems(result, res) {
             //     numIngred++;
             // }
 
+            recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
+            recipesToPrint += "<p class='recipeContent'>" + result[i].instructions + "</p>";
+
             numingred = 1;
             numUtensils = 1;
             numRecipes++;
