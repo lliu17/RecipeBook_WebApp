@@ -51,13 +51,23 @@ router.post("/", (req, res) => {
 });
 
 function printItems(result, res) {
-    var recipesToPrint = "<head><link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'><link rel='stylesheet' href='recipe-book.css'></head><body><div class='search-results'><h1>Search Results</h1><ul class='nav-content' style='background-color: rgba(255, 255, 150, .5); text-align: center;'><li class='nav-li'><a href='index.html'>HOME</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='recipe-book.html'>CREATE</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='search.html'>SEARCH</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='about.html'>ABOUT US</a></li>&nbsp;&nbsp;&bull;&nbsp;<li class='nav-li'><a href='contact.html'>CONTACT</a></li></ul><div id='resultsDiv'>";
+    var recipesToPrint = "<head><link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'><link rel='stylesheet' href='recipe-book.css'></head><body><div class='search-results'><h1 style='text-align: center;'>Search Results</h1><ul class='nav-content' style='background-color: rgba(255, 255, 150, .5);'><li class='nav-li'><a href='index.html'>HOME</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='recipe-book.html'>CREATE</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='search.html'>SEARCH</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='about.html'>ABOUT US</a></li>&nbsp;&nbsp;&bull;&nbsp;<li class='nav-li'><a href='contact.html'>CONTACT</a></li></ul><div id='resultsDiv'>";
+    var numRecipes = 1;
+    var numUtensils = 1;
 
     if (result.length > 0) {
-        for (i=0; i<result.length; i++) {
-            recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe: " + result[i].recipeName + "</p><br>";
-            recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + "minutes</p><br>";
-            recipesToPrint += "<p>"
+        for (var i = 0; i < result.length; i++) {
+            recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe " + numRecipes + ": " + result[i].recipeName + "</p><br>";
+            recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + " minutes</p><br>";
+            recipesToPrint += "<p class='recipeContent'>Utensils:</p><br>";
+            for (var j = 0; j < result.utensils.length; j++) {
+                recipesToPrint += "<p class='recipeContent'>" + numUtensils + ". " +  result.utensils[j] + "</p><br>";
+                numUtensils++;
+            }
+
+
+            numUtensils = 0;
+            numRecipes++;
         }
     } else {
         recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
