@@ -51,12 +51,12 @@ router.post("/", (req, res) => {
 });
 
 function printItems(result, res) {
-    var recipesToPrint = "<head><link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'><link rel='stylesheet' href='recipe-book.css'></head><body><div class='search-results'><h1>Search Results</h1><ul class='nav-content' style='background-color: rgba(255, 255, 150, .5);'><li class='nav-li'><a href='index.html'>HOME</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='recipe-book.html'>CREATE</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='search.html'>SEARCH</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='about.html'>ABOUT US</a></li>&nbsp;&nbsp;&bull;&nbsp;<li class='nav-li'><a href='contact.html'>CONTACT</a></li></ul><div id='resultsDiv'>";
+    var recipesToPrint = "<head><link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'><link rel='stylesheet' href='recipe-book.css'></head><body><div class='search-results'><h1>Search Results</h1><ul class='nav-content' style='background-color: rgba(255, 255, 150, .5); text-align: center;'><li class='nav-li'><a href='index.html'>HOME</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='recipe-book.html'>CREATE</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='search.html'>SEARCH</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='about.html'>ABOUT US</a></li>&nbsp;&nbsp;&bull;&nbsp;<li class='nav-li'><a href='contact.html'>CONTACT</a></li></ul><div id='resultsDiv'>";
 
     if (result.length > 0) {
         for (i=0; i<result.length; i++) {
             recipesToPrint += "<p id=" + result[i].recipeName + ">Recipe: " + result[i].recipeName + "</p><br>";
-            // recipesToPrint += "<p id=" + result[i].minutes + "Minutes: " + results
+            recipesToPrint += "<p>Hours: " + results[i].hours + " Minutes:" + results[i].minutes + "</p><br>";
         }
     } else {
         recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
