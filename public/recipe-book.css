@@ -116,7 +116,6 @@ textarea {
 }
 
 .search-results {
-	background-color: black;
 /*	background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.267) ),
 				url("images/cooking-college.jpg");
 	background-repeat: repeat-y;*/
@@ -130,7 +129,7 @@ textarea {
 }
 
 .resultsDiv {
-	background-color: rgba(216, 208, 202, 0.74);
+	/*background-color: rgba(216, 208, 202, 0.74);*/
 	text-align: center;
 	width: 50%;
 	margin-left: 40%;

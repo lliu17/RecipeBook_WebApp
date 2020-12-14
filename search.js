@@ -64,6 +64,7 @@ function printItems(result, res) {
             recipesToPrint += "<p class='recipeContent'>Utensils:</p>";
 
             if (result[i].utensils.length == 1) {
+                recipesToPrint += "<p>Only One!</p>"; 
                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;1. " + result[i].utensils + "</p>";
             } else {
                 for (var j = 0; j < result[i].utensils.length; j++) {
