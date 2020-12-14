@@ -57,11 +57,11 @@ function printItems(result, res) {
 
     if (result.length > 0) {
         for (var i = 0; i < result.length; i++) {
-            recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe " + numRecipes + ": " + result[i].recipeName + "</p><br>";
-            recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + " minutes</p><br>";
-            recipesToPrint += "<p class='recipeContent'>Utensils:</p><br>";
+            recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe " + numRecipes + ": " + result[i].recipeName + "</p>";
+            recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + " minutes</p>";
+            recipesToPrint += "<p class='recipeContent'>Utensils:</p>";
             for (var j = 0; j < result[i].utensils.length; j++) {
-                recipesToPrint += "<p class='recipeContent'>" + numUtensils + ". " +  result[i].utensils[j] + "</p><br>";
+                recipesToPrint += "<p class='recipeContent'>" + numUtensils + ". " +  result[i].utensils[j] + "</p>";
                 numUtensils++;
             }
 
