@@ -66,10 +66,12 @@ function printItems(result, res) {
                 numUtensils++;
             }
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
-            for (j = 0; j < result[i].ingredients.length; j++) {
-                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients[j] + "</p>";
-                numIngred++;
-            }
+            recipesToPrint += "<p> class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients + "</p>";
+            // uncomment out once ingredients has been made an array
+            // for (j = 0; j < result[i].ingredients.length; j++) {
+            //     recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients[j] + "</p>";
+            //     numIngred++;
+            // }
 
             numingred = 1;
             numUtensils = 1;
