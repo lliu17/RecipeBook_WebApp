@@ -66,7 +66,7 @@ function printItems(result, res) {
                 numUtensils++;
             }
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
-            recipesToPrint += "<p> class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients + "</p>";
+            recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients + "</p>";
             // uncomment out once ingredients has been made an array
             // for (j = 0; j < result[i].ingredients.length; j++) {
             //     recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients[j] + "</p>";
