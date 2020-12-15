@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
+const convert = require('convert-units')
 const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb+srv://grandma:grandma123@cluster0.hdzif.mongodb.net/?retryWrites=true&w=majority";
 
@@ -92,12 +93,40 @@ function printItems(result, res) {
             }
 
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
-            recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients + "</p>";
+
+             // for testing - print out first ingredient
+             var i = 0;
+             recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" 
+                            + "-&nbsp&nbsp" + result[i].quanIngredient + " " + result[i].units
+                            + " of " + result[i].ingredients + "</p>";
+             // add conversions
+            //  console.log("testing convert: " + convert(1).from("cup").to("tsp"));
+            //  recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp; (" 
+            //                     + result[i].quanIngredient + " " + result[i].units + " = "
+            //                     + ")";
+
+            // recipesToPrint += '<input class="API_num_unit" type="text" name="" value="' + result[i].quanIngredient + '">';
+            // // make selection menu
+            // recipesToPrint += '<select name="API_units"> <option value="cups">cups</option><option value="oz">oz</option>'
+            //                 + '<option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="lb">lb</option></select>';
+            // // pre-select the default unit (the one originally used by the recipe)
+            // // const displayUnit = document.getElementsByName("API_units");
+            // // for (var u = 0; u < displayUnit.length; u++) {
+            // //     if (displayUnit.options[u] == result[i].units) {
+            // //         displayUnit.options[u].selected = true;
+            // //         break;
+            // //     }
+            // // } 
+            // recipesToPrint += "<span class='recipeContent'> of " + result[i].ingredients + "</p>";
+
+            // recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients + "</p>";
             // uncomment out once ingredients has been made an array
             // for (j = 0; j < result[i].ingredients.length; j++) {
             //     recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients[j] + "</p>";
             //     numIngred++;
             // }
+
+           
 
             recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
             if (isArray(result[i].instructions)) {
