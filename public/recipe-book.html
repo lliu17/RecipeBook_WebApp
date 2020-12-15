@@ -28,17 +28,18 @@
 					<li>
 						<label> Time Needed: </label><input type='number' name='hours' value="0">hrs <input type="number" name='minutes' value='0'>min
 					</li>
-					<!--Utensils needed (extendable array)-->
+					<!--Utensils needed (extendable ul)-->
 					<li>Utensils  Needed:
 						<ul id="inputUtensils">
 							<li><input type="input" placeholder="whisk" name='utensils'></li>
 						</ul>
 						<input type="button" value="Add another utensil" onclick="addInputField('inputUtensils', 'input', 'text', 'utensils', 'whisk')">
 					</li>
+					<!--Ingredients needed (extendable ol of 3 inputs/li: quantity, units, ingredient)-->
 					<li> <span style="font-weight: bold;">Ingredients: </span>
 						<ol id="inputIngredients">
 							<li>
-								<input type="number" name='quanIngredient' placeholder="0" required="true">
+								<input type="number" step='0.01' name='quanIngredient' placeholder="0" required="true">
 								<select name="units">
 									<option value="cup">cups</option>
 									<option value="oz">oz</option>
@@ -53,6 +54,7 @@
 						</ol>
 						<input type="button" value="Add another ingredient" onclick="addMultipleFields('inputIngredients', 'quanIngredient', 'units', 'ingredients')">
 					</li>
+					<!--Ingredients needed - extendable ol of textareas-->
 					<li><span style="font-weight: bold;">Instructions: </span>
 						<ol id="inputInstructions">
 							<li><textarea type='text' name='instructions' value='Step 1'></textarea></li>
@@ -62,11 +64,12 @@
 				</ul>
 				<input type='submit' value="Submit">
 			</form>
+
+			<!--Javascript for adding input fields as needed-->
 			<script language="javascript">
 				var units = ['cups', 'tsp', 'tbsp', 'oz', 'lb', 'g', 'item(s)'];
 
 				function addInputField(listId, fieldType, inputType, fieldName, fieldPlaceholder) {
-					alert("add input field called");
 					list = document.getElementById(listId);
 					li = document.createElement("li");
 	
@@ -80,11 +83,11 @@
 				}
 
 				function addMultipleFields(listId, fieldName1, fieldName2, fieldName3) {
-					alert("multiple fields called");
 					list = document.getElementById(listId);
+					li = document.createElement("li");
+
 					// create new list element and quantity
-					liHTML = "<li>";
-					liHTML += "<input type='number' name='quanIngredient' placeholder='0'>";
+					liHTML = "<input type='number' step='0.01' name='quanIngredient' placeholder='0'>";
 
 					// create dropdown for units
 					liHTML += " <select name='units'>";
@@ -97,7 +100,8 @@
 					liHTML += "<input type='input' placeholder='flour' name='ingredients'>";
 					liHTML += "</li>";
 
-					list.innerHTML += liHTML;
+					li.innerHTML = liHTML;
+					list.appendChild(li);
 				}
 			</script>
 		</div>
