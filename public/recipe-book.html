@@ -32,8 +32,7 @@
 					Ingredients: <input type="number" name='quanIngredient' value="0"> <select name="units"><option value="cups">cups</option><option value="oz">oz</option><option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="lb">lb</option></select> <input type="input" placeholder="flour" name='ingredients'>
 				</div>
 				<!--TODO:  multiple inputs function does not work yet-->
-				<input type="button" value="Add another ingredient" 
-				onclick="addMultipleInputs('inputIngredients', 'quanIngredient', 'units', )">
+				<input type="button" value="Add another ingredient"  onclick="addMultipleFields('inputIngredients', 'quanIngredient', 'units', 'ingredients')">
 				<div id="inputInstructions">
 					Instructions: 
 					<textarea type='text' name='instructions' value='Step 1'></textarea>
