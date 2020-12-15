@@ -84,23 +84,25 @@
 
 				function addMultipleFields(listId, fieldName1, fieldName2, fieldName3) {
 					list = document.getElementById(listId);
-					li = document.createElement("li");
-
+					//li = document.createElement("li");
+					liHTML = "<li>";
 					// create new list element and quantity
-					liHTML = "<input type='number' step='0.01' name='quanIngredient' placeholder='0'>";
+					liHTML += "<input type='number' step='0.01' name='quanIngredient' placeholder='0'>";
 
 					// create dropdown for units
 					liHTML += " <select name='units'>";
 					for (j=0; j<units.length; j++) {
-						liHTML += "<option value='" + units[j] + "'>" + units[j] + "</option>"
+						liHTML += "<option value='" + units[j] + "'>" + units[j] + "</option>";
 					}
 					liHTML += "</select> "; 
 
 					// create text input and close li
 					liHTML += "<input type='input' placeholder='flour' name='ingredients'>";
 
-					li.innerHTML = liHTML;
-					list.appendChild(li);
+					liHTML += "</li>";
+
+					list.innerHTML += liHTML;
+					//list.appendChild(li);
 				}
 			</script>
 		</div>
