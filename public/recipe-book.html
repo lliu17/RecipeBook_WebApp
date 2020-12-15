@@ -78,13 +78,13 @@
 					div = document.getElementById(divId);
 					oneIngredient = document.createElement("div");
 					div.appendChild(oneIngredient);
-					
+
 					var newDivID = "ingredient" + numIngredients;
 					oneIngredient.id = newDivID;
 
 					addInputField(newDivID, 'number', fieldName1, '0');
-					makeSelect(fieldName2, newDivID);
-					addInputField(newDivID, 'text', fieldName3, 'sugar');
+					//makeSelect(fieldName2, newDivID);
+					//addInputField(newDivID, 'text', fieldName3, 'sugar');
 					numIngredients++;
 				}
 			</script>
