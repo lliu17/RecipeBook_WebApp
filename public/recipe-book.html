@@ -28,9 +28,8 @@
 					Utensils Needed: <input type="input" placeholder="whisk" name='utensils'>
 				</div>
 				<input type="button" value="Add another utensil" onclick="addInputField('inputUtensils', 'input', 'text', 'utensils', 'whisk')">
-				<div>
-					Ingredients: <input type="number" name='quanIngredient' value="0"> <select name="units"><option value="cup">cups</option><option value="oz">oz</option><option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="lb">lb</option></select> <input type="input" placeholder="flour" name='ingredients'>
-					<div  id="inputIngredients"></div>
+				<div id="inputIngredients">
+					Ingredients: <input type="number" name='quanIngredient' value="0"><script language="javascript">makeSelect("units", "inputIngredients");</script> <input type="input" placeholder="flour" name='ingredients'>
 				</div>
 				<!--TODO:  multiple inputs function does not work yet-->
 				<input type="button" value="Add another ingredient"  onclick="addMultipleFields('inputIngredients', 'quanIngredient', 'units', 'ingredients')">
@@ -77,7 +76,6 @@
 				function addMultipleFields(divId, fieldName1, fieldName2, fieldName3) {
 					div = document.getElementById(divId);
 					oneIngredient = document.createElement("div");
-					div.appendChild(oneIngredient);
 
 					var newDivID = "ingredient" + numIngredients;
 					oneIngredient.id = newDivID;
@@ -86,6 +84,8 @@
 					//makeSelect(fieldName2, newDivID);
 					//addInputField(newDivID, 'text', fieldName3, 'sugar');
 					numIngredients++;
+
+					div.appendChild(oneIngredient);
 				}
 			</script>
 		</div>
