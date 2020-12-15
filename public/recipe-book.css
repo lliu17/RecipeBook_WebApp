@@ -73,6 +73,14 @@ a:hover {
     padding-bottom: 10px;
 }
 
+#recipeForm {
+	text-align: left;
+}
+
+#recipeForm ul {
+	text-align: left;
+}
+
 #inputInstructions {
     margin: 0 auto;
     display: block;

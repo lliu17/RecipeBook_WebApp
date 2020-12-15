@@ -19,25 +19,47 @@
             </ul>
 
 			<form action="/recipes" method="POST" class="recipeInput">
-				<div id='recipeInputHeader'>
-					<label><h3>Recipe Name: </h3> </label><input type='text' required="true" placeholder="Mashed Potatoes" name='recipeName'><br />
-					<label> Time Needed: </label><input type='number' name='hours' value="0">hrs <input type="number" name='minutes' value='0'>min<br />
-				</div>
-				<!--Utensils needed: (utensil)-->
-				<div id="inputUtensils">
-					Utensils Needed: <input type="input" placeholder="whisk" name='utensils'>
-				</div>
-				<input type="button" value="Add another utensil" onclick="addInputField('inputUtensils', 'input', 'text', 'utensils', 'whisk')">
-				<div id="inputIngredients">
-					Ingredients: <input type="number" name='quanIngredient' value="0"><select name="units"><option value="cup">cups</option><option value="oz">oz</option><option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="lb">lb</option><option value="g">g</option><option value="item(s)">item(s)</option></select>> <input type="input" placeholder="flour" name='ingredients'>
-				</div>
-				<!--TODO:  multiple inputs function does not work yet-->
-				<input type="button" value="Add another ingredient"  onclick="addMultipleFields('inputIngredients', 'quanIngredient', 'units', 'ingredients')">
-				<div id="inputInstructions">
-					Instructions: 
-					<textarea type='text' name='instructions' value='Step 1'></textarea>
-				</div>
-				<input type="button" value="Add another step" onclick="addInputField('inputInstructions', 'textarea', '', 'instructions', '')">
+				<ul id='recipeForm'>
+					<!--Recipe name-->
+					<li>
+						<label>Recipe Name:</label><input type='text' required="true" placeholder="Mashed Potatoes" name='recipeName'><br />
+					</li>
+					<!--Time (hours & minutes)-->
+					<li>
+						<label> Time Needed: </label><input type='number' name='hours' value="0">hrs <input type="number" name='minutes' value='0'>min
+					</li>
+					<!--Utensils needed (extendable array)-->
+					<li>
+						<ul id="inputUtensils">Utensils  Needed:
+							<li><input type="input" placeholder="whisk" name='utensils'></li>
+						</ul>
+						<input type="button" value="Add another utensil" onclick="addInputField('inputUtensils', 'input', 'text', 'utensils', 'whisk')">
+					</li>
+					<li>
+						<ul id="inputIngredients">Ingredients: 
+							<li>
+								<input type="number" name='quanIngredient' value="0">
+								<select name="units">
+									<option value="cup">cups</option>
+									<option value="oz">oz</option>
+									<option value="tsp">tsp</option>
+									<option value="tbsp">tbsp</option>
+									<option value="lb">lb</option>
+									<option value="g">g</option>
+									<option value="item(s)">item(s)</option>
+								</select> 
+								<input type="input" placeholder="flour" name='ingredients'>
+							</li>
+						</ul>
+						<input type="button" value="Add another ingredient"  onclick="addMultipleFields('inputIngredients', 'quanIngredient', 'units', 'ingredients')">
+					</li>
+					<li>
+						<ul id="inputInstructions">Instructions: 
+							<li><textarea type='text' name='instructions' value='Step 1'></textarea></li>
+						</ul>
+						<input type="button" value="Add another step" onclick="addInputField('inputInstructions', 'textarea', '', 'instructions', '')">
+					</li>
+				</ul>
 				<input type='submit' value="Submit">
 			</form>
 			<script language="javascript">
@@ -45,8 +67,9 @@
 				var numIngredients = 1;
 
 				//adapted from the "Jade Delight" provided code
-				function makeSelect(name, divId) {
-					div = document.getElementById(divId);
+				function makeSelect(name, ulId) {
+					ul = document.getElementById(ulId);
+					li = document.createElement("li");
 					select = document.createElement("select");
 
 					select.name = name;
@@ -58,23 +81,26 @@
 						option.innerText = units[j];
 						select.appendChild(option);
 					}
-					div.appendChild(select);
+					li.appendChild(select)
+					ul.appendChild(li);
 				}
 
-				function addInputField(divId, fieldType, inputType, fieldName, fieldPlaceholder) {
+				function addInputField(ulId, fieldType, inputType, fieldName, fieldPlaceholder) {
 					alert("add input field called");
-					div = document.getElementById(divId);
+					ul = document.getElementById(ulId);
+					li = document.createElement("li");
 	
 					field = document.createElement(fieldType);
 					field.name = fieldName;
 					field.type = inputType;
 					field.placeholder = fieldPlaceholder;
 					
-					div.appendChild(field);
+					li.appendChild(field);
+					ul.appendChild(li);
 				}
 
 				function addMultipleFields(divId, fieldName1, fieldName2, fieldName3) {
-					div = document.getElementById(divId);
+					ul = document.getElementById(ulId);
 					oneIngredient = document.createElement("div");
 
 					var newDivID = "ingredient" + numIngredients;
