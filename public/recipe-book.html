@@ -26,12 +26,12 @@
 					</li>
 					<!--Time (hours & minutes)-->
 					<li>
-						<label> Time Needed: </label><input type='number' name='hours' value="0">hrs <input type="number" name='minutes' value='0'>min
+						<label> Time Needed: </label><input type='number' name='hours' value="" placeholder="0">hrs <input type="number" name='minutes' value='' placeholder="0">min
 					</li>
 					<!--Utensils needed (extendable ul)-->
 					<li>Utensils  Needed:
 						<ul id="inputUtensils">
-							<li><input type="input" placeholder="whisk" name='utensils'></li>
+							<li><input type="input" placeholder="whisk" value="" name='utensils'></li>
 						</ul>
 						<input type="button" value="Add another utensil" onclick="addInputField('inputUtensils', 'input', 'text', 'utensils', 'whisk')">
 					</li>
@@ -57,7 +57,9 @@
 					<!--Ingredients needed - extendable ol of textareas-->
 					<li><span style="font-weight: bold;">Instructions: </span>
 						<ol id="inputInstructions">
-							<li><textarea type='text' name='instructions' value='Step 1'></textarea></li>
+							<li>
+								<textarea type='text' name='instructions' placeholder='Step 1' required="true"></textarea>
+							</li>
 						</ol>
 						<input type="button" value="Add another step" onclick="addInputField('inputInstructions', 'textarea', '', 'instructions', '')">
 					</li>
