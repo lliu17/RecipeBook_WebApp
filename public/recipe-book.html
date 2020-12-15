@@ -28,8 +28,9 @@
 					Utensils Needed: <input type="input" placeholder="whisk" name='utensils'>
 				</div>
 				<input type="button" value="Add another utensil" onclick="addInputField('inputUtensils', 'input', 'text', 'utensils', 'whisk')">
-				<div id="inputIngredients">
+				<div>
 					Ingredients: <input type="number" name='quanIngredient' value="0"> <select name="units"><option value="cups">cups</option><option value="oz">oz</option><option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="lb">lb</option></select> <input type="input" placeholder="flour" name='ingredients'>
+					<div  id="inputIngredients"></div>
 				</div>
 				<!--TODO:  multiple inputs function does not work yet-->
 				<input type="button" value="Add another ingredient"  onclick="addMultipleFields('inputIngredients', 'quanIngredient', 'units', 'ingredients')">
@@ -42,12 +43,11 @@
 			</form>
 			<script language="javascript">
 				var units = ['cups', 'tsp', 'tbsp', 'oz', 'lb', 'g', 'item(s)'];
+				var numIngredients = 1;
 
-				//borrowed from the "Jade Delight" provided code
+				//adapted from the "Jade Delight" provided code
 				function makeSelect(name, divId) {
-					alert("making select");
 					div = document.getElementById(divId);
-
 					select = document.createElement("select");
 
 					select.name = name;
@@ -58,7 +58,6 @@
 						option.value= units[j]
 						option.innerText = units[j];
 						select.appendChild(option);
-						alert("adding " + units[j]);
 					}
 					div.appendChild(select);
 				}
@@ -76,10 +75,16 @@
 				}
 
 				function addMultipleFields(divId, fieldName1, fieldName2, fieldName3) {
-					alert("multiple fields called");
-					addInputField(divId, 'number', fieldName1, '0');
-					makeSelect(fieldName2, divId);
-					addInputField(divId, 'text', fieldName3, 'sugar');
+					div = document.getElementById(divId);
+					oneIngredient = document.createElement("div");
+
+					var newDivID = "ingredient" + numIngredients;
+					oneIngredient.id = newDivID;
+
+					addInputField(newDivID, 'number', fieldName1, '0');
+					makeSelect(fieldName2, newDivID);
+					addInputField(newDivID, 'text', fieldName3, 'sugar');
+					div.appendChild(oneIngredient);
 				}
 			</script>
 		</div>
