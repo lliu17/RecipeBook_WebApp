@@ -13,7 +13,7 @@ const url = "mongodb+srv://grandma:grandma123@cluster0.hdzif.mongodb.net/?retryW
 // add new -> post request
 router.post("/", (req, res) => {
     // note: valid input not checked here! should be checked in the form before submission
-    const query = req.body.query;
+    var query = req.body.query.toLowerCase();
     console.log("query = " + query);
 
     var searchIn;   // check radio button to see if search for name or ingredients
@@ -22,8 +22,21 @@ router.post("/", (req, res) => {
     }
     else {
         searchIn = "ingredients";
+        query = query.split(",");
     }
+    // make regular expression(s) for the query
+    var RE = [];
+    if (isArray(query)) {
+        for (var i = 0; i < query.length; i++) {
+            RE[i] = new RegExp(query[i]);
+        }
+    }
+    else {
+        RE[0] = new RegExp(query);
+    }
+
     console.log("search in: " + searchIn);
+    console.log("reg = " + RE);
 
     MongoClient.connect(url,  { useUnifiedTopology: true }, (errConnect, client) => {
         if (errConnect) return console.error(errConnect);
@@ -33,7 +46,7 @@ router.post("/", (req, res) => {
         const collection = db.collection("recipes");
         
         // search using regular expression - not exact match
-        collection.find({[searchIn]: new RegExp(query)}).toArray((errSearch, result) => 
+        collection.find({[searchIn]: {$all: RE}}).toArray((errSearch, result) => 
         {
             if (errSearch) return console.error(errSearch);
             else {
@@ -67,10 +80,15 @@ function printItems(result, res) {
                 recipesToPrint += "<p>Only One!</p>"; 
                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;1. " + result[i].utensils + "</p>";
             } else {
-                for (var j = 0; j < result[i].utensils.length; j++) {
-                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numUtensils + ". " + result[i].utensils[j] + "</p>";
-                    numUtensils++;
-                } 
+                if (isArray(result[i].utensils)) {
+                    for (var j = 0; j < result[i].utensils.length; j++) {
+                        recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numUtensils + ". " + result[i].utensils[j] + "</p>";
+                        numUtensils++;
+                    }
+                }
+                else {
+                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numUtensils + ". " + result[i].utensils + "</p>";
+                }
             }
 
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
@@ -82,9 +100,14 @@ function printItems(result, res) {
             // }
 
             recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
-            for (j = 0;  j < result[i].instructions.length; j++) {
-                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numInstruc + ". " + result[i].instructions[j] + "</p>";
-                numInstruc++;
+            if (isArray(result[i].instructions)) {
+                for (j = 0;  j < result[i].instructions.length; j++) {
+                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numInstruc + ". " + result[i].instructions[j] + "</p>";
+                    numInstruc++;
+                }
+            }
+            else {
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numInstruc + ". " + result[i].instructions + "</p>";
             }
 
             numInstruc = 1;
@@ -97,6 +120,11 @@ function printItems(result, res) {
     }
     recipesToPrint += "</div></div></body>";
     res.write(recipesToPrint);
+}
+
+// checking if an object is an array
+function isArray(object) {
+    return Object.prototype.toString.call(object) === '[object Array]';
 }
 
 module.exports = router;

@@ -73,6 +73,12 @@ a:hover {
     padding-bottom: 10px;
 }
 
+#inputInstructions {
+    margin: 0 auto;
+    display: block;
+    width:80%;
+}
+
 .contactForm {
 	background-color: rgba(216, 208, 202, 0.74);
 	width: 20%;
