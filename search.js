@@ -94,11 +94,16 @@ function printItems(result, res) {
 
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
 
-             // for testing - print out first ingredient
-             var i = 0;
-             recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" 
-                            + "-&nbsp&nbsp" + result[i].quanIngredient + " " + result[i].units
-                            + " of " + result[i].ingredients + "</p>";
+             if (result[i].ingredients.length == 1) {
+                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient + " " + result[i].units + " " + result[i].ingredients + "</p>"
+             } else if (result[i].ingredients.length > 1) {
+                 for (ingredI=0; ingredI<result[i].ingredients.length; ingredI++) {
+                     recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient[ingredI] + " " + result[i].units[ingredI] + " " + result[i].ingredients[ingredI] + "</p>";
+                 }
+             } else {
+                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;No ingredients needed.</p>";
+             }
+                            ;
              // add conversions
             //  console.log("testing convert: " + convert(1).from("cup").to("tsp"));
             //  recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp; (" 
