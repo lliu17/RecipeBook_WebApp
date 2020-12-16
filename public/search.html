@@ -41,7 +41,7 @@
             </ul>
 
             <form action="/search" method="POST" class="recipeInput">
-                <p>Search recipe by:</p>
+                <p style="font-weight: bold;">Search recipe by:</p>
                 <div class='recipeInputHeader'>
                     <input type="radio" id="name" name="search" value="name" checked>
                     <label for="name">Name</label><br>
@@ -50,8 +50,9 @@
                     <input type="radio" id="ingredients" name="search" value="ingredients">
                     <label for="ingredients">Ingredients</label><br>
                 </div>
-
-                <input type='text' placeholder="recipe name" name='query' class="search"><br />
+                <input type='text' placeholder="Words to include (e.g. chocolate, cake, etc.)" name='query' class="search">
+                <p style="font-weight: bold;">Exclude:</p>
+                <input type="text" placeholder="Words to exclude (e.g. eggs, pork, etc.)" value="" class="search"><br />
                 <input type='submit' value="Submit" class="button">
 
             </form>
