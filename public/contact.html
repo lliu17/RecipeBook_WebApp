@@ -11,7 +11,7 @@
 			function pressButton() {
 
 				var email = document.getElementById("email").value;
-				var url = "http://apilayer.net/api/check?access_key=f34d9c14b99875cbc9f74459e4386dd6&email=";
+				var url = "https://apilayer.net/api/check?access_key=f34d9c14b99875cbc9f74459e4386dd6&email=";
 				url += email;
 
 				var userMessage = document.getElementById("message").value;
@@ -79,7 +79,7 @@
 
                 <label>Message: </label>
                 <textarea name="message" id="message" required></textarea><br />
-                
+
                 <input type="button" value="Send Email" onclick="pressButton()" /> 
             </form>
         </div>
