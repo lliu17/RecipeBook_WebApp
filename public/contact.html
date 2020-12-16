@@ -5,15 +5,20 @@
 		<title>Contact: Digital Recipe Book</title>
 		<link rel="stylesheet" href="recipe-book.css">
 		<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  		<script src="https://smtpjs.com/v3/smtp.js"></script> 
 
 		<script>
 			function pressButton() {
 
 				var email = document.getElementById("email").value;
-
 				var url = "http://apilayer.net/api/check?access_key=f34d9c14b99875cbc9f74459e4386dd6&email=";
-
 				url += email;
+
+				var userMessage = document.getElementById("message").value;
+				var userName = document.getElementById("name").value;
+				var yourName = document.getElementById("yourName").value;
+
+				var message = "Hi " + userName + ", " + yourName + " wants you to check out the Digital Family Recipe Book Web App! Visit https://digital-family-recipe-book.herokuapp.com/ and instantly gain access to tons of holiday recipes and upload your own!" + yourName + " has included a personalized message: " + userMessage;
 
 				request = new XMLHttpRequest();
 
@@ -30,7 +35,17 @@
 						} else if (document.getElementById("message").value = ""){
 							alert("Please enter a message to send.");
 						} else {
-							alert("Thank you for your message! We will be in contact shortly.");
+							Email.send({
+								Host: "smtp.gmail.com",
+								Username: "grandmasrecipe2020@gmail.com",
+								Password: "grandma123~",
+								To: email,
+								From: "grandmasrecipe2020@gmail.com",
+								Subject: "A friend wants you to try the Digital Family Recipe Book!",
+								Body: message,
+							}).then(function (message) { 
+			          			alert("Message sent successfully!") 
+			        		}); 
 						}
 					}
 				}
@@ -52,21 +67,34 @@
             <li class="nav-li"><a href="contact.html">CONTACT</a></li>
         </ul>
 
+<<<<<<< HEAD
         <div class="contactForm">
             <form>
                 <label>Name:</label>
                 <input type="text" name="name" required="true" /><br />
+=======
+        <div class="shareForm">
+            <form method="post">
+
+            	<label>Your Name:</label>
+                <input type="text" name="yourName" id="yourName" required /><br />
+
+                <label>Friend's Name:</label>
+                <input type="text" name="name" id="name" required /><br />
+>>>>>>> 423c9e22d46745d20e1936ebf76607b41ea9d502
 
                 <label>Email:</label>
                 <input type="email" name="email" id="email" required="true" /><br />
 
-                <label>Phone:</label>
-                <input type="phone" name="phone" /><br />
-
                 <label>Message: </label>
+<<<<<<< HEAD
                 <textarea name="message" required="true" id="message"></textarea><br />
+=======
+                <textarea name="message" id="message" required></textarea><br />
+                
+                <input type="button" value="Send Email" onclick="pressButton()" /> 
+>>>>>>> 423c9e22d46745d20e1936ebf76607b41ea9d502
             </form>
-            <button class="button" id="btn" type="button" onclick="pressButton()">Send</button>
         </div>
 	    </div>
 	</body>
