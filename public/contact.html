@@ -27,6 +27,8 @@
 
 						if (emailObj.format_valid == false) {
 							alert("Please enter a valid email address.");
+						} else if (document.getElementById("message").value = ""){
+							alert("Please enter a message to send.");
 						} else {
 							alert("Thank you for your message! We will be in contact shortly.");
 						}
@@ -53,16 +55,16 @@
         <div class="contactForm">
             <form>
                 <label>Name:</label>
-                <input type="text" name="name" required /><br />
+                <input type="text" name="name" required="true" /><br />
 
                 <label>Email:</label>
-                <input type="email" name="email" id="email" required /><br />
+                <input type="email" name="email" id="email" required="true" /><br />
 
                 <label>Phone:</label>
                 <input type="phone" name="phone" /><br />
 
                 <label>Message: </label>
-                <textarea name="message" required></textarea><br />
+                <textarea name="message" required="true" id="message"></textarea><br />
             </form>
             <button class="button" id="btn" type="button" onclick="pressButton()">Send</button>
         </div>
