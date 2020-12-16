@@ -8,8 +8,9 @@ const url = "mongodb+srv://grandma:grandma123@cluster0.hdzif.mongodb.net/?retryW
 // display thank you message after submitting recipe (post action)
 router.get("/", (req, res) => { 
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write("Thank you for submitting a recipe!<br>");
-    res.write('<a href="/recipe-book.html">Add another recipe</a>');
+    var text = "<head><link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'><link rel='stylesheet' href='recipe-book.css'></head><body style='background-color: #6495ED'><div class='search-results'><h1 style='text-align: center;'>Recipe Submitted!</h1><ul class='nav-content' style='background-color: rgba(255, 255, 150, .5);'><li class='nav-li'><a href='index.html'>HOME</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='recipe-book.html'>CREATE</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='search.html'>SEARCH</a></li>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<li class='nav-li'><a href='about.html'>ABOUT US</a></li>&nbsp;&nbsp;&bull;&nbsp;<li class='nav-li'><a href='contact.html'>CONTACT</a></li></ul><div id='recipeSubmittedDiv'>";
+    text += "<h2>Thank you for submitting a recipe!</h2></br><a href='/recipe-book.html'>Add another recipe</a>'</div></body>";
+    res.write(text);
     res.end();
 });
 
