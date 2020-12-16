@@ -95,8 +95,11 @@ function printItems(result, res) {
             recipesToPrint += "<p class='recipeContent'>Utensils:</p>";
             if (isArray(result[i].utensils)) {
                 for (var j = 0; j < result[i].utensils.length; j++) {
+                    // doesn't print nonexistent utensils
+                    if (result[i].utensils[j] != "") {
                         recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numUtensils + ". " + result[i].utensils[j] + "</p>";
                         numUtensils++;
+                    }
                 }
             }
             else if  (result[i].utensils.length == 0) {
@@ -110,7 +113,14 @@ function printItems(result, res) {
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
             if (isArray(result[i].ingredients)) {
                 for (ingredI=0; ingredI<result[i].ingredients.length; ingredI++) {
-                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient[ingredI] + " " + result[i].units[ingredI] + " " + result[i].ingredients[ingredI] + "</p>";
+
+                    var quantity = result[i].quanIngredient[ingredI], 
+                        unit = result[i].units[ingredI], 
+                        ingredient = result[i].ingredients[ingredI];
+                    // doesn't print nonexistent ingredients
+                    if (quantity != 0 && unit != "" && ingredient != "") {
+                        recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + quantity + " " + unit + " " + ingredient + "</p>";
+                    }
                 }
             }
             else if  (result[i].ingredients.length == 0) {
@@ -132,8 +142,10 @@ function printItems(result, res) {
             recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
             if (isArray(result[i].instructions)) {
                 for (j = 0;  j < result[i].instructions.length; j++) {
-                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numInstruc + ". " + result[i].instructions[j] + "</p>";
-                    numInstruc++;
+                    if (result[i].instructions[j].length > 0) {
+                        recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numInstruc + ". " + result[i].instructions[j] + "</p>";
+                        numInstruc++;
+                    }
                 }
             }
             else {
@@ -146,7 +158,7 @@ function printItems(result, res) {
             numRecipes++;
         }
     } else {
-        recipesToPrint += "<p>No recipes with those keywords were found in the database.</p>";
+        recipesToPrint += "<p>No recipes with those specifications were found in the database.</p>";
     }
     recipesToPrint += "</div></div></body>";
     res.write(recipesToPrint);

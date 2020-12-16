@@ -41,7 +41,8 @@
             </ul>
 
             <form action="/search" method="POST" class="recipeInput">
-                <p style="font-weight: bold;">Search recipe by:</p>
+                <p style="font-weight: bold; padding-top: 10px;">Search recipe by:</p>
+                <p style="font-weight: lighter; font-style: italic; font-size: small;">Enter key words to search for or exclude, or press "Submit" to see all recipes.</p>
                 <div class='recipeInputHeader'>
                     <input type="radio" id="name" name="search" value="name" checked>
                     <label for="name">Name</label><br>
@@ -54,7 +55,7 @@
                 <!-- <p style="font-weight: bold;">Exclude:</p> -->
                 <br>
                 <label for="excluded">Exclude:</label>
-                <input type="text" placeholder="Words to exclude (e.g. eggs, pork, etc.), seperated by comma" name='excluded' class="search">
+                <input type="text" placeholder="Utensils or ingredients to exclude (e.g. eggs, pork, etc.), separated by commas" name='excluded' class="search">
                 <br />
                 <input type='submit' value="Submit" class="button">
 
