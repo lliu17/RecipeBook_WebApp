@@ -96,7 +96,7 @@ function printItems(result, res) {
 
              if (result[i].ingredients.length == 1) {
                  recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient + " " + result[i].units + " " + result[i].ingredients + "</p>"
-             } else if (result[i].ingredients.length > 1) {
+             } else if (isArray(result[i].ingredients)) {
                  for (ingredI=0; ingredI<result[i].ingredients.length; ingredI++) {
                      recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient[ingredI] + " " + result[i].units[ingredI] + " " + result[i].ingredients[ingredI] + "</p>";
                  }
