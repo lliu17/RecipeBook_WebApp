@@ -87,7 +87,7 @@ a:hover {
     width:80%;
 }
 
-.contactForm {
+.shareForm {
 	background-color: rgba(216, 208, 202, 0.74);
 	width: 20%;
 	margin-left: 40%;
@@ -105,7 +105,7 @@ a:hover {
     padding-bottom: 15px;
 }
 
-.contactForm input {
+.shareForm input {
   width: 100%;
   clear: both;
 }
