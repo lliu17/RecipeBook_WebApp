@@ -1,15 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const bodyParser = require("body-parser");
-const convert = require('convert-units')
+// const convert = require('convert-units');
 const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb+srv://grandma:grandma123@cluster0.hdzif.mongodb.net/?retryWrites=true&w=majority";
-
-// display search result
-// router.get("/", (req, res) => { 
-//     res.json(req.body);
-//     res.end();
-// });
 
 // add new -> post request
 router.post("/", (req, res) => {
@@ -23,7 +16,7 @@ router.post("/", (req, res) => {
     }
     else {
         searchIn = "ingredients";
-        query = query.split(",");
+        query = query.split(/[ ,]+/);
     }
     // make regular expression(s) for the query
     var RE = [];
@@ -75,34 +68,35 @@ function printItems(result, res) {
         for (var i = 0; i < result.length; i++) {
             recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe " + numRecipes + ": " + result[i].recipeName + "</p>";
             recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + " minutes</p>";
+            
+            // add strings for utensils
             recipesToPrint += "<p class='recipeContent'>Utensils:</p>";
-
-            if (result[i].utensils.length == 1) {
-                recipesToPrint += "<p>Only One!</p>"; 
-                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;1. " + result[i].utensils + "</p>";
-            } else {
-                if (isArray(result[i].utensils)) {
-                    for (var j = 0; j < result[i].utensils.length; j++) {
+            if (isArray(result[i].utensils)) {
+                for (var j = 0; j < result[i].utensils.length; j++) {
                         recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numUtensils + ". " + result[i].utensils[j] + "</p>";
                         numUtensils++;
-                    }
-                }
-                else {
-                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numUtensils + ". " + result[i].utensils + "</p>";
                 }
             }
+            else if  (result[i].utensils.length == 0) {
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;No utensils needed.</p>";
+            }
+            else {
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;1. " + result[i].utensils + "</p>";
+            }
 
+            // add strings for ingredients
             recipesToPrint += "<p class='recipeContent'>Ingredients:</p>";
-
-             if (result[i].ingredients.length == 1) {
-                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient + " " + result[i].units + " " + result[i].ingredients + "</p>"
-             } else if (isArray(result[i].ingredients)) {
-                 for (ingredI=0; ingredI<result[i].ingredients.length; ingredI++) {
-                     recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient[ingredI] + " " + result[i].units[ingredI] + " " + result[i].ingredients[ingredI] + "</p>";
-                 }
-             } else {
-                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;No ingredients needed.</p>";
-             }
+            if (isArray(result[i].ingredients)) {
+                for (ingredI=0; ingredI<result[i].ingredients.length; ingredI++) {
+                    recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient[ingredI] + " " + result[i].units[ingredI] + " " + result[i].ingredients[ingredI] + "</p>";
+                }
+            }
+            else if  (result[i].ingredients.length == 0) {
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;No ingredients needed.</p>";
+            }
+            else {
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient + " " + result[i].units + " " + result[i].ingredients + "</p>"
+            }
                             ;
              // add conversions
             //  console.log("testing convert: " + convert(1).from("cup").to("tsp"));
@@ -131,8 +125,7 @@ function printItems(result, res) {
             //     numIngred++;
             // }
 
-           
-
+            // add strings for instructions
             recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
             if (isArray(result[i].instructions)) {
                 for (j = 0;  j < result[i].instructions.length; j++) {
