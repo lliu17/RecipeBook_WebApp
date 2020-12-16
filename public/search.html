@@ -51,8 +51,11 @@
                     <label for="ingredients">Ingredients</label><br>
                 </div>
                 <input type='text' placeholder="Words to include (e.g. chocolate, cake, etc.)" name='query' class="search">
-                <p style="font-weight: bold;">Exclude:</p>
-                <input type="text" placeholder="Words to exclude (e.g. eggs, pork, etc.)" value="" class="search"><br />
+                <!-- <p style="font-weight: bold;">Exclude:</p> -->
+                <br>
+                <label for="excluded">Exclude:</label>
+                <input type="text" placeholder="Words to exclude (e.g. eggs, pork, etc.), seperated by comma" name='excluded' class="search">
+                <br />
                 <input type='submit' value="Submit" class="button">
 
             </form>
@@ -62,7 +65,7 @@
                 radio.on("click", function() { search_by(); });
                 function search_by() {
                     if(radio[0].checked) {
-                        $("[name='query']").attr("placeholder", "recipe name");
+                        $("[name='query']").attr("placeholder", "Words to include (e.g. chocolate, cake, etc.)");
                     }
                     else {
                         $("[name='query']").attr("placeholder", "ingredients, separated by comma");

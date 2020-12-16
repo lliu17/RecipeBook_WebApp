@@ -18,19 +18,39 @@ router.post("/", (req, res) => {
         searchIn = "ingredients";
         query = query.split(/[ ,]+/);
     }
-    // make regular expression(s) for the query
+
+    // build regular expression(s) for the query
     var RE = [];
-    if (isArray(query)) {
-        for (var i = 0; i < query.length; i++) {
-            RE[i] = new RegExp(query[i]);
+    if (query != "") {
+        if (isArray(query)) {
+            for (var i = 0; i < query.length; i++) {
+                RE[i] = new RegExp(query[i]);
+            }
+        }
+        else {
+            RE[0] = new RegExp(query);
         }
     }
-    else {
-        RE[0] = new RegExp(query);
+
+    // build regular expression(s) for things to exclude
+    var excluded = req.body.excluded.toLowerCase();
+    excluded = excluded.split(/[ ,]+/);
+
+    var excludedRE = [];
+    if (excluded != "") {
+        if (isArray(excluded)) {
+            for (var i = 0; i < excluded.length; i++) {
+                excludedRE[i] = new RegExp(excluded[i]);
+            }
+        }
+        else {
+            excludedRE[0] = new RegExp(excluded);
+        }
     }
 
     console.log("search in: " + searchIn);
     console.log("reg = " + RE);
+    console.log("excludedRE = " + excludedRE);
 
     MongoClient.connect(url,  { useUnifiedTopology: true }, (errConnect, client) => {
         if (errConnect) return console.error(errConnect);
@@ -39,8 +59,11 @@ router.post("/", (req, res) => {
         const db = client.db("FamilyRecipe");
         const collection = db.collection("recipes");
         
+        // var e = [];
+        // e[0] = new RegExp("mixer");
+
         // search using regular expression - not exact match
-        collection.find({[searchIn]: {$all: RE}}).toArray((errSearch, result) => 
+        collection.find({$and: [ {[searchIn]: {$all: RE}}, {utensils: {$nin: excludedRE}}, {ingredients: {$nin: excludedRE}}] }).toArray((errSearch, result) => 
         {
             if (errSearch) return console.error(errSearch);
             else {
@@ -95,35 +118,16 @@ function printItems(result, res) {
                 recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;No ingredients needed.</p>";
             }
             else {
-                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient + " " + result[i].units + " " + result[i].ingredients + "</p>"
+                recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;" + result[i].quanIngredient + " " + result[i].units + " " + result[i].ingredients + "</p>";
             }
-                            ;
-             // add conversions
+
+            //  // add conversions
             //  console.log("testing convert: " + convert(1).from("cup").to("tsp"));
             //  recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp; (" 
             //                     + result[i].quanIngredient + " " + result[i].units + " = "
             //                     + ")";
 
-            // recipesToPrint += '<input class="API_num_unit" type="text" name="" value="' + result[i].quanIngredient + '">';
-            // // make selection menu
-            // recipesToPrint += '<select name="API_units"> <option value="cups">cups</option><option value="oz">oz</option>'
-            //                 + '<option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="lb">lb</option></select>';
-            // // pre-select the default unit (the one originally used by the recipe)
-            // // const displayUnit = document.getElementsByName("API_units");
-            // // for (var u = 0; u < displayUnit.length; u++) {
-            // //     if (displayUnit.options[u] == result[i].units) {
-            // //         displayUnit.options[u].selected = true;
-            // //         break;
-            // //     }
-            // // } 
-            // recipesToPrint += "<span class='recipeContent'> of " + result[i].ingredients + "</p>";
 
-            // recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients + "</p>";
-            // uncomment out once ingredients has been made an array
-            // for (j = 0; j < result[i].ingredients.length; j++) {
-            //     recipesToPrint += "<p class='recipeContent'>&nbsp;&nbsp;&nbsp;" + numIngred + ". " + result[i].ingredients[j] + "</p>";
-            //     numIngred++;
-            // }
 
             // add strings for instructions
             recipesToPrint += "<p class='recipeContent'>Instructions:</p>";
