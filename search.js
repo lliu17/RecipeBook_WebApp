@@ -89,7 +89,33 @@ function printItems(result, res) {
     if (result.length > 0) {
         for (var i = 0; i < result.length; i++) {
             recipesToPrint += "<p class='recipeTitle'" + result[i].recipeName + ">Recipe " + numRecipes + ": " + result[i].recipeName + "</p>";
-            recipesToPrint += "<p class='recipeContent'>Time: " + result[i].hours + " hours, " + result[i].minutes + " minutes</p>";
+
+            var hours = "", minutes = "", totalHours = 0, timeStatement = "<p class='recipeContent'>Time: ";
+            // only prints Time: and hours or minutes if hours or minutes aren't 0
+            if (result[i].minutes > 59) {
+                minutes = (result[i].minutes % 60) + " minutes";
+                totalHours = (result[i].minutes - (result[i].minutes % 60)) / 60;
+            }
+            else if (result[i].minutes > 0) {
+                minutes = result[i].minutes + " minutes";
+            }
+
+            if (result[i].hours > 0) {
+                hours += (totalHours + result[i].hours) + " hours ";
+            }
+
+            if (hours != "" || minutes != "") {
+                if (hours != "") {
+                    timeStatement += hours;
+                }
+                
+                if (minutes != "") {
+                    timeStatement += minutes;
+                }
+
+                recipesToPrint += timeStatement + "</p>";
+            }
+            
             
             // add strings for utensils
             recipesToPrint += "<p class='recipeContent'>Utensils:</p>";
