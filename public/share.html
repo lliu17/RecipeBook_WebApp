@@ -8,17 +8,32 @@
   		<script src="https://smtpjs.com/v3/smtp.js"></script> 
 
 		<script>
-			function pressButton() {
+			function shareSite() {
 
 				var email = document.getElementById("email").value;
+				var senderMessage = document.getElementById("message").value;
+				var receiverName = document.getElementById("name").value;
+				var senderName = document.getElementById("senderName").value;
+
+				if (email == "") {
+					alert("Please enter an email address to share our website with.");
+					return;
+				} else if (receiverName == "") {
+					alert("Please enter your friend's name.");
+					return;
+				} else  if (senderName == "") {
+					alert("Please enter your name.");
+					return;
+				}
+
 				var url = "https://apilayer.net/api/check?access_key=f34d9c14b99875cbc9f74459e4386dd6&email=";
 				url += email;
 
-				var userMessage = document.getElementById("message").value;
-				var userName = document.getElementById("name").value;
-				var yourName = document.getElementById("yourName").value;
+				var senderMessage = document.getElementById("message").value;
+				var receiverName = document.getElementById("name").value;
+				var senderName = document.getElementById("senderName").value;
 
-				var message = "Hi " + userName + ", " + yourName + " wants you to check out the Digital Family Recipe Book Web App! Visit https://digital-family-recipe-book.herokuapp.com/ and instantly gain access to tons of holiday recipes and upload your own! " + yourName + " has included a personalized message: " + userMessage;
+				var message = "Hi " + receiverName + ", " + senderName + " wants you to check out the Digital Family Recipe Book Web App! Visit https://digital-family-recipe-book.herokuapp.com/ and instantly gain access to tons of holiday recipes and upload your own! " + senderName + " has included a personalized message: " + senderMessage;
 
 				request = new XMLHttpRequest();
 
@@ -32,8 +47,6 @@
 
 						if (emailObj.format_valid == false) {
 							alert("Please enter a valid email address.");
-						} else if (document.getElementById("message").value = ""){
-							alert("Please enter a message to send.");
 						} else {
 							Email.send({
 								Host: "smtp.gmail.com",
@@ -71,18 +84,18 @@
             <form method="post">
 
             	<label>Your Name:</label>
-                <input type="text" name="yourName" id="yourName" required /><br />
+                <input type="text" name="senderName" id="senderName" required /><br />
 
                 <label>Friend's Name:</label>
                 <input type="text" name="name" id="name" required /><br />
 
                 <label>Friend's Email:</label>
-                <input type="email" name="email" id="email" required="true" /><br />
+                <input type="email" name="email" id="email" placeholder="email@email.com" required="true" /><br />
 
                 <label>Message: </label>
-                <textarea name="message" required="true" id="message"></textarea><br />
+                <textarea name="message" required="true" id="message" placeholder="Hey! Check out the best website ever!"></textarea><br />
 
-                <input type="button" value="Send Email" onclick="pressButton()" /> 
+                <input type="button" value="Send Email" onclick="shareSite()" /> 
             </form>
         </div>
 	</body>
