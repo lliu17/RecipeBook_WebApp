@@ -21,16 +21,15 @@ router.post("/", (req, res) => {
 
     // build regular expression(s) for the query
     var RE = [];
-    if (query != "") {
-        if (isArray(query)) {
-            for (var i = 0; i < query.length; i++) {
-                RE[i] = new RegExp(query[i]);
-            }
-        }
-        else {
-            RE[0] = new RegExp(query);
+    if (isArray(query)) {
+        for (var i = 0; i < query.length; i++) {
+            RE[i] = new RegExp(query[i]);
         }
     }
+    else {
+        RE[0] = new RegExp(query);
+    }
+    
 
     // build regular expression(s) for things to exclude
     var excluded = req.body.excluded.toLowerCase();
